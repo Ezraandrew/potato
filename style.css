@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Container Styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h1 {
+  text-align: center;
+  color: #4CAF50;
+}
+
+h2 {
+  color: #333;
+}
+
+h3 {
+  color: #666;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  margin: 10px 0;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Navigation Styles */
+nav {
+  text-align: center;
+  margin-top: 20px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Image Styles */
+img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Result Details */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}

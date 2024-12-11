@@ -1,0 +1,123 @@
+/* Basic reset */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+
+
+main{
+    margin:0;
+    background-color:green;
+    opacity: 85%;
+    border-radius: 5%;
+    
+   
+}
+
+.scroll{
+    max-height: 300px;
+    overflow-y: scroll;
+
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    
+    color: #333;
+    
+}
+
+.browse{
+    word-wrap: break-word;
+    word-break: break-all;
+    color: aliceblue;
+    
+}
+
+.btn{
+    width: 300px;
+}
+
+.content{
+    background-image: url(../images/potato_field2.jpg);
+   
+    margin-bottom: 0%;
+    height: 550px;
+    /*background-color: #f4f4f4;*/
+   
+
+}
+
+
+footer{
+    position: relative;
+}
+
+header {
+    background-color: #0a923e;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #06c069;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #065a3a;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

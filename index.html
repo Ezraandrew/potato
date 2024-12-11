@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Diagnosis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+ 
+    <header>
+        <div class="row w-100">
+            <h1 class="col-sm-8 pl-5">Potato Plant Leaf Disease Diagnosis System</h1>
+            
+            <nav class="col-sm-4 py-3">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<div class="py-5 content">  
+    <main class="col-sm-6 py-2 my-2 px-5 main">
+        <h3 class="text-light upload">Upload an Image</h3>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <input class="browse" type="file" name="file" accept="image/*" required>
+            <center><button class="btn btn-lg" type="submit">Diagnose</button></center>
+        </form>
+    <div class="scroll">
+        
+        <center><button class="ml-3 btn btn-success btn-lg" id="start-camera-button" type="button">Use Camera to capture Image</button></center><br>
+        <video class="w-50" id="camera" autoplay></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+        <button class"" id="capture-button" type="button" style="display: none;">Capture</button>
+    
+            <div id="captured-image-preview" style="display: none;">
+            <h3>Captured Image</h3>
+            <img class="w-50" id="captured-image" alt="Captured Image" style="width: 100%;"><br>
+            <button class="btn lg" id="submit-button" type="button">Diagnose</button>
+        </div>
+    
+
+
+        <form id="camera-form" action="{{ url_for('predict') }}" method="post" style="display: none;">
+            <input type="hidden" name="captured_image" id="captured_image">
+            <!-- This form will be submitted when the user clicks the Submit button -->
+        </form>
+    </div>
+    </main>
+</content>
+
+    <footer>
+        <p>&copy; 2024 Developed By one-moresoft (KASU/19/CSC/1122). All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('start-camera-button').addEventListener('click', async function() {
+            const video = document.getElementById('camera');
+            const captureButton = document.getElementById('capture-button');
+            
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                captureButton.style.display = 'block';
+            } catch (err) {
+                console.error("Error accessing camera: ", err);
+                alert("Could not access the camera. Please check your device settings.");
+            }
+        });
+
+        document.getElementById('capture-button').addEventListener('click', function() {
+            const video = document.getElementById('camera');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const capturedImagePreview = document.getElementById('captured-image-preview');
+            const capturedImageElement = document.getElementById('captured-image');
+            const submitButton = document.getElementById('submit-button');
+
+            // Set canvas dimensions and draw the video frame to the canvas
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert the canvas image to a base64 string and set it to the hidden input field
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            document.getElementById('captured_image').value = dataUrl;
+
+            // Show the captured image on the preview element
+            capturedImageElement.src = dataUrl;
+            capturedImagePreview.style.display = 'block';
+
+            // Pause before showing the submit button
+            setTimeout(() => {
+                submitButton.style.display = 'block';
+            }, 2000); // Adjust delay time (in milliseconds) as needed
+        });
+
+        document.getElementById('submit-button').addEventListener('click', function() {
+            document.getElementById('camera-form').submit();
+        });
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis Result</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+    <header>
+        <h1>Potato Plant Leaf Disease Diagnosis System</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <div style="/* max-height: 500px; padding-left:10px;
+    overflow-y: scroll; */"> 
+        <main2 style="padding:10px; height:500px;">
+        <center><h2 class="bg-success w-50 py-1 text-warning">Diagnosis Result</h2></center>
+            <div class="px-5" id="result">
+                {{ result|safe }}
+            </div>
+            <div class="px-5">
+                <h5>Uploaded Image:</h4>
+                <img class="w-25" src="data:image/png;base64,{{ image }}">
+            </div>
+        </main2>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Developed By EZRA ANDREW (KASU/19/CSC/1122). All rights reserved.</p>
+    </footer>
+</div>
+</body>
+</html>

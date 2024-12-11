@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Capture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Potato Plant Leaf Disease Diagnosis System</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Use Camera to Capture Image</h2>
+        <video id="camera" autoplay></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+        <button id="capture-button" type="button">Capture</button>
+
+        <form id="camera-form" action="{{ url_for('predict') }}" method="post" style="display: none;">
+            <input type="hidden" name="captured_image" id="captured_image">
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Potato Disease Diagnosis System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function startCamera() {
+            const video = document.getElementById('camera');
+            const canvas = document.getElementById('canvas');
+            const captureButton = document.getElementById('capture-button');
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(err => {
+                    console.error("Error accessing camera: ", err);
+                });
+
+            captureButton.addEventListener('click', () => {
+                const context = canvas.getContext('2d');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                canvas.toDataURL('image/jpeg', (dataUrl) => {
+                    document.getElementById('captured_image').value = dataUrl;
+                    document.getElementById('camera-form').submit();
+                });
+            });
+        }
+
+        window.onload = startCamera;
+    </script>
+</body>
+</html>
